@@ -13,9 +13,14 @@ class Order {
   - id : number
   - status : string
   - lines : OrderLine[]
+  - observers : Observer[]
   - discountStrategy : DiscountStrategy
   + calculateTotal() number
+  + addObserver(o : Observer) : void
+  + removeObserver(o : Observer) : void
+  + notifyObservers() : void
 }
+
 class OrderLine {
   - quantity : number
   - dish : Dish
@@ -52,6 +57,24 @@ class HappyHourDiscount{
   + applyDiscount(amount: number) : number
 }
 
+class Kitchen {
+  + update(order : Order) : void
+}
+
+class Observable {
+  <<interface>>
+  + addObserver(o : Observer) : void
+  + removeObserver(o : Observer) : void
+  + notifyObservers() : void
+}
+
+class Observer {
+  <<interface>>
+  + update(order : Order) : void
+}
+
+
+
 
 Customer "1" --> "0..*" Order
 Order "1" *-- "1..*" OrderLine
@@ -61,7 +84,8 @@ Order --> DiscountStrategy
 DiscountStrategy <|.. NoDiscount
 DiscountStrategy <|.. PercentageDiscount
 DiscountStrategy <|.. HappyHourDiscount
-
+Observable <|.. Order
+Observer <|.. Kitchen
 
 
 ```
