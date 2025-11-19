@@ -1,6 +1,6 @@
 import { Dish } from "./dish";
 
-export class OderLine {
+export class OrderLine {
     constructor(
     public dish : Dish,
     public quantity: number
