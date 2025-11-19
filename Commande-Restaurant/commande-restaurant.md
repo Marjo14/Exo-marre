@@ -57,9 +57,19 @@ class HappyHourDiscount{
   + applyDiscount(amount: number) : number
 }
 
+class Invoice {
+  - id : number
+  - date : Date
+  - totalAmount : number
+  - taxAmount : number
+  - order : Order
+  + generate() : void
+}
+
 class Kitchen {
   + update(order : Order) : void
 }
+
 
 class Observable {
   <<interface>>
@@ -73,9 +83,6 @@ class Observer {
   + update(order : Order) : void
 }
 
-
-
-
 Customer "1" --> "0..*" Order
 Order "1" *-- "1..*" OrderLine
 OrderLine "1" --> "1" Dish
@@ -86,6 +93,7 @@ DiscountStrategy <|.. PercentageDiscount
 DiscountStrategy <|.. HappyHourDiscount
 Observable <|.. Order
 Observer <|.. Kitchen
+Order "1" --> "1" Invoice
 
 
 ```
