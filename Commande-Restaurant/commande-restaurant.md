@@ -30,8 +30,14 @@ class Customer {
   - tableNumber : number
 }
 
+class DishFactory {
+  + createDish(code : string) : Dish
+}
+
 Customer "1" --> "0..*" Order
 Order "1" *-- "1..*" OrderLine
 OrderLine "1" --> "1" Dish
+DishFactory --> Dish
+
 
 ```
