@@ -24,6 +24,7 @@ class Order {
 class OrderLine {
   - quantity : number
   - dish : Dish
+  + getLineTotal() : number
 }
 
 class Dish {
@@ -105,9 +106,13 @@ Observable <|.. Order
 Observer <|.. Kitchen
 
 
-
-
 ```
+Customer passe une Order, qui contient plusieurs OrderLines, chacune liée à un Dish.
+Order calcule le total et délègue la réduction à une DiscountStrategy (Strategy pattern).
+DishFactory centralise la création des Dish à partir du menu (Factory pattern).
+Order implémente Observable et notifie Kitchen (Observer) quand le statut change (Observer pattern).
+Invoice est créée à partir d’une Order, avec totalAmount et taxAmount
+
 ✔ 1. Le statut concerne la commande entière :
 Parce qu’une commande (Order) est servie en bloc, même si elle contient plusieurs plats.
 
