@@ -1,29 +1,37 @@
+Plat = infos sur un plat
 
+LigneCommande = un plat + quantité
+
+Commande = ensemble de lignes
+
+Client = personne qui commande
+ 
+ 
  ```mermaid
 classDiagram
-class Commande {
+class Order {
   - id : number
-  - statut : string
-  - lignes : LigneCommande[]
-  + calculerTotal() number
+  - status : string
+  - lines : OrderLine[]
+  + calculateTotal() number
 }
-class LigneCommande {
-  - quantite : number
-  - plat : Plat
+class OrderLine {
+  - quantity : number
+  - dish : Dish
 }
-class Plat {
-  - nom : string
-  - type : string
-  - prix : number
+class Dish {
+  - name : string
+  - category : string
+  - price : number
 }
-class Client {
+class Customer {
   - id : number
-  - nom : string
-  - numeroTable : number
+  - name : string
+  - tableNumber : number
 }
 
-Client "1" --> "0..*" Commande
-Commande "1" *-- "1..*" LigneCommande
-LigneCommande "1" --> "1" Plat
+Customer "1" --> "0..*" Order
+Order "1" *-- "1..*" OrderLine
+OrderLine "1" --> "1" Dish
 
 ```
