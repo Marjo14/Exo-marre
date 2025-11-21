@@ -1,4 +1,4 @@
-1// Define datas type
+// 1️⃣ Interfaces
 interface Todo {
   id: number;
   todo: string;
@@ -13,26 +13,32 @@ interface TodosResponse {
   limit: number;
 }
 
-2// Récupérer les information de l'API 
+// 2️⃣ Fonction GET ➜ récupère TOUTES les todos
 async function fetchTodos(): Promise<TodosResponse> {
-  const response = await fetch("https://dummyjson.com/todos");
-  console.log("RAW RESPONSE :", response);
+  const response = await fetch("https://dummyjson.com/todos?limit=0"); // 👈 récupère toutes les todo
 
   if (!response.ok) {
     throw new Error(`Error HTTP : ${response.status}`);
   }
 
   const data: TodosResponse = await response.json();
-  console.log("DATA JSON :", data); 
-
   return data;
 }
 
-async function main() {
+// 3️⃣ Fonction ➜ retourne seulement le tableau de todos
+async function getOnlyTodos(): Promise<Todo[]> {
   const result = await fetchTodos();
-  console.log("RESULT in Main :", result);
+  return result.todos;
 }
 
-main();
+// 4️⃣ Fonction ➜ affiche UNIQUEMENT les textes
+async function mainBis() {
+  const todos = await getOnlyTodos();
 
+  for (const t of todos) {
+    console.log(t.todo); // 👈 ici on affiche seulement la phrase
+  }
+}
 
+// 5️⃣ Appel de la fonction principale
+mainBis();
