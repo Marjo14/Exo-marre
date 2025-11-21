@@ -21,7 +21,7 @@ async function getDummy<T>(url: string): Promise<T> {
     throw new Error(`Erreur HTTP : ${response.status}`);
   }
 
-  const data: T = await response.json(); 
+  const data: T = await response.json();
   return data;
 }
 

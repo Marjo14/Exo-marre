@@ -1,3 +1,5 @@
+// 👉 Objectif : apprendre à appeler l’API et manipuler les données en récupérant et affichant données précises
+
 // 1️⃣ Interfaces
 interface Todo {
   id: number;
@@ -25,7 +27,7 @@ async function fetchTodos(): Promise<TodosResponse> {
   return data;
 }
 
-// 3️⃣ Fonction ➜ retourne seulement le tableau de todos
+// 3️⃣ Fonction qui retourne seulement le tableau de todos
 async function getOnlyTodos(): Promise<Todo[]> {
   const result = await fetchTodos();
   return result.todos;
